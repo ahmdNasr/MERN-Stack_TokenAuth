@@ -1,8 +1,8 @@
 const { getAllUsers } = require("../db-access/user-dao");
 
-async function getAllusersService() {
+async function getAllUsersService() {
     const usersArray = await getAllUsers()
     return usersArray
 }
 
-module.exports = { getAllusersService }
+module.exports = { getAllUsersService }

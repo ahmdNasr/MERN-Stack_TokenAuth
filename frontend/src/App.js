@@ -1,29 +1,31 @@
 import { useState } from 'react';
 import './App.css';
+import Dashboard from './components/Dashboard';
+import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 
 function App() {
-  // STATE:
-  //    anfangs wert
-  //    aktuellen wert
-  //    wert updaten
-  
-  // array 
-  const [vorname, setVorname] = useState("Tommy")
-  const [counter, setCounter] = useState(0)
+  const [token, setToken] = useState(null)
 
-  const buttonClick = () => {
-    setVorname("Freddy")
-    setCounter(counter + 1)
+  // "lifting state up" --- "STATE ANHEBEN"
+  const saveToken = (value) => {
+    const tokenNonEmptyIsString = typeof value === "string" && value.length > 0
+    if(tokenNonEmptyIsString) {
+      setToken(value)
+    }
   }
-  
+
+  const tokenExists = token && token.length > 0
+  const AppContent = tokenExists
+    ? <Dashboard token={token} />
+    : <div>
+      <LoginForm saveToken={saveToken} />
+      <RegistrationForm />
+    </div>
+
   return (
     <div className="App">
-      <h1>Hallo {vorname}</h1>
-      <h2>{counter}</h2>
-      <button onClick={buttonClick}>Change Name To Freddy</button>
-      <hr/>
-      <RegistrationForm />
+      {AppContent}
     </div>
   );
 }

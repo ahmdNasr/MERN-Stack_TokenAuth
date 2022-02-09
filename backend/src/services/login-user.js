@@ -10,7 +10,7 @@ const generateToken = (user) => {
     const token = jwt.sign({
         sub: user._id,      // wer ist es
         iat: NOW, // dividieren durch 1000 um von millisekunden auf sekunden zu kommen...
-        exp: NOW_IN_ONE_DAY, // wann er abläuft
+        exp: NOW + 10, // wann er abläuft
         type: "access_token",
     }, process.env.JWT_SECRET)
 

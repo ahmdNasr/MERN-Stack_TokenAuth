@@ -4,6 +4,8 @@ const dotenv = require("dotenv")
 
 const { loginUserService } = require("./services/login-user")
 const { registerUserService } = require("./services/register-user")
+const { doAuthentication } = require("./middleware/doAuthentication")
+const { getAllUsersService } = require("./services/get-all-users")
 
 dotenv.config()
 
@@ -12,8 +14,11 @@ const app = express()
 app.use(cors())
 app.use(express.json()) // parse body as json!!!! (für POST routen)
 
-app.get("/api/users", (req, res) => {
-
+app.get("/api/users", doAuthentication, (req, res) => {
+    // const tokenInfo = req.tokenInfo
+    // const userId = tokenInfo.sub
+    getAllUsersService()
+    .then(usersArray => res.send(usersArray))
 })
 
 app.post("/api/users/login", (req, res) => {
