@@ -51,7 +51,8 @@ function RegistrationForm () {
     }
 
     return (
-        <div>
+        <div style={{ border: "1px solid gold", paddingBottom: 20, backgroundColor: "tomato" }}>
+            <h1 style={{ color: "gold" }}>Create an Account</h1>
             <form>
                 <input 
                     type="text"
@@ -92,6 +93,7 @@ function FormFeedback(props) {
                 backgroundColor: feedback.status === "error" ? "red" : "green", 
                 color: "white",
                 margin: 10,
+                padding: 15,
             }}
             >
                 {feedback.message}
