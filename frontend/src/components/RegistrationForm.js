@@ -13,6 +13,20 @@ function RegistrationForm () {
     const triggerRegister = (event) => {
         // neu laden verhindern
         event.preventDefault()
+
+        // checken ob formular gefüllt ist
+        const hasData = firstname.length > 0 && 
+                        lastname.length > 0 &&
+                        email.length > 0 &&
+                        password.length > 0
+        if(!hasData) {
+            setFormFeedback({
+                status: "error",
+                message: "Please enter some info my dear!"
+            })
+            return;
+        }
+
         // api funktion callen
         postRegisterUser({
             firstname,
