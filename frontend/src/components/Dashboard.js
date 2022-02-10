@@ -18,6 +18,7 @@ function Dashboard(props) {
     return (
         <div>
             <h1>Dashboard</h1>
+            <button onClick={props.logout}>Logout</button>
             {
                 users.map((user, index) => (
                     <div key={index}>

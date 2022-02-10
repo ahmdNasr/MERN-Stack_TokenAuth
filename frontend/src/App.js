@@ -15,9 +15,14 @@ function App() {
     }
   }
 
+  const logout = () => {
+    // einfach den token löschen
+    setToken(null)
+  }
+
   const tokenExists = token && token.length > 0
   const AppContent = tokenExists
-    ? <Dashboard token={token} />
+    ? <Dashboard token={token} logout={logout} />
     : <div>
       <LoginForm saveToken={saveToken} />
       <RegistrationForm />
